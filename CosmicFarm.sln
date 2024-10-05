@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - AppService", "2 - AppSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{F534672F-6DAB-4AE9-9A1F-5C934AA4E2ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmicFarm.Domain", "CosmicFarm.Domain\CosmicFarm.Domain.csproj", "{5D720E82-94BB-4FEE-8891-03C663BA5FD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmicFarm.Domain", "src\CosmicFarm.Domain\CosmicFarm.Domain.csproj", "{5D720E82-94BB-4FEE-8891-03C663BA5FD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{28CD84D3-C9D6-454B-8D8F-2B0DE4897194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmicFarm.Infrastructure", "CosmicFarm.Infrastructure\CosmicFarm.Infrastructure.csproj", "{B1FAE18D-60C2-4A1D-BE81-C55863B44D30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmicFarm.Infrastructure", "src\CosmicFarm.Infrastructure\CosmicFarm.Infrastructure.csproj", "{B1FAE18D-60C2-4A1D-BE81-C55863B44D30}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Modules", "5 - Modules", "{4DA47956-E2AF-4289-8E3B-E7AD034B919F}"
 EndProject
