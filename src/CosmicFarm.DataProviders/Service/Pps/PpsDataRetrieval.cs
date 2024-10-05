@@ -9,16 +9,18 @@ public class PpsDataRetrieval : IDataRetrival<Precipitation>
 {
     private const string _userName = "joaovicsrodrigues@gmail.com"; //The same as the password
     private readonly HttpClient _httpClient;
+    private readonly ILogger<PpsDataRetrieval> _log;
 
-    public PpsDataRetrieval(HttpClient httpClient)
+    public PpsDataRetrieval(HttpClient httpClient, ILogger<PpsDataRetrieval> log)
     {
         _httpClient = httpClient;
-        _httpClient.BaseAddress = new("https://arthurhouhttps.pps.eosdis.nasa.gov");
+        _httpClient.BaseAddress = new("https://arthurhouhttps.pps.eosdis.nasa.gov/text");
         var basic = Encoding.ASCII.GetBytes($"{_userName}:{_userName}");
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
             "Basic",
             Convert.ToBase64String(basic)
         );
+        _log = log;
     }
 
     public Task<Precipitation> GetDataFromSource(DateTime start)
@@ -33,5 +35,13 @@ public class PpsDataRetrieval : IDataRetrival<Precipitation>
             start.Day
         );
         string sufix = "1a?2B?";
+    }
+
+    private async Task<List<string>> GetFileList(string request)
+    {
+        var result = await _httpClient.GetAsync(request);
+        if(result.IsSuccessStatusCode)
+
+        return list;
     }
 }
