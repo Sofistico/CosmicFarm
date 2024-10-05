@@ -1,0 +1,31 @@
+.overlay {
+  background: #0000004f;
+  z-index: 6;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modalContainer {
+    width: 30%;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    .closeContainer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      border-bottom: 1px solid rgb(182, 182, 182);
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
