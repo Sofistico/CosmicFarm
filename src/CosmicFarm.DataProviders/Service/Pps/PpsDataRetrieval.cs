@@ -2,6 +2,8 @@ using System.Globalization;
 using System.Net.Http.Headers;
 using System.Text;
 using CosmicFarm.Domain.Models;
+using HDF5CSharp;
+using Microsoft.Extensions.Logging;
 
 namespace CosmicFarm.DataProviders.Service.Pps;
 
@@ -23,25 +25,37 @@ public class PpsDataRetrieval : IDataRetrival<Precipitation>
         _log = log;
     }
 
-    public Task<Precipitation> GetDataFromSource(DateTime start)
+    public async Task<Precipitation> GetDataFromSource(DateTime start)
     {
         // example: https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2024/10/05/1A/1A.GPM.GMI.COUNT2021.20241005-S150124-E163438.060215.V07B.HDF5
         StringBuilder bobTheBuilder = new StringBuilder("/gpmdata/");
         bobTheBuilder.AppendFormat(
             CultureInfo.InvariantCulture,
-            "{0}/{1}/{2}",
+            "{0}/{1}/{2}/1C",
             start.Year,
             start.Month,
             start.Day
         );
-        string sufix = "1a?2B?";
+        var list = await GetFileList(bobTheBuilder.ToString());
+        if(list == null)
+            return null;
+
+        var precipitacao = new Precipitation();
+        foreach (var file in list)
+        {
+            await using var stream = await _httpClient.GetStreamAsync(file);
+            var hd5 = Hdf5.
+        }
     }
 
-    private async Task<List<string>> GetFileList(string request)
+    private async Task<string[]?> GetFileList(string request)
     {
         var result = await _httpClient.GetAsync(request);
-        if(result.IsSuccessStatusCode)
-
-        return list;
+        var response = result.RequestMessage.Content.ToString();
+        if(!result.IsSuccessStatusCode){
+            _log.LogError("Houve um erro na response, Reponse: {Response}", response);
+            return [];
+        }
+        return response?.Split("/n");
     }
 }
